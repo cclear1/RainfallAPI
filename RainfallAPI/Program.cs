@@ -1,3 +1,4 @@
+using RainfallAPI.Clients;
 using RainfallAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IRainfallService, RainfallService>();
+builder.Services.AddScoped<IEnvironmentDataClient, EnvironmentDataClient>();
 
 builder.Services.AddLogging();
 builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);

@@ -1,10 +1,24 @@
+using RainfallAPI.Clients;
+using RainfallAPI.Controllers;
+
 namespace RainfallAPI.Services
 {
     public class RainfallService : IRainfallService
     {
-        public String GetRainfallReadings(String station)
+        private readonly ILogger _logger;   
+        private readonly IEnvironmentDataClient _environmentDataClient;
+
+        public RainfallService(ILogger<RainfallController> logger, IEnvironmentDataClient environmentDataClient) 
+        { 
+            _logger = logger;
+            _environmentDataClient = environmentDataClient;
+        }
+
+        public async Task<string> GetRainfallReadingsForStationAsync(string stationId, int count)
         {
-            return station;
+            string? response = await _environmentDataClient.GetRainfallReadingsForStation(stationId, count);
+            _logger.LogInformation("Reponse: {}", response);
+            return stationId;
         }
 
     }

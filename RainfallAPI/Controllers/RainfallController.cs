@@ -18,11 +18,11 @@ namespace RainfallAPI.Controllers
         }
 
         [HttpGet]
-        [Route("id/{station}/readings")]
-        public String GetRainfallReadingsByStationId(String station)
+        [Route("id/{stationId}/readings")]
+        public async Task<string> GetRainfallReadingsByStationId(string stationId, [FromQuery] int count)
         {
-            _logger.LogInformation("Getting rainfall readings for station: {}", station);
-            return _rainfallService.GetRainfallReadings(station);
+            _logger.LogInformation("Getting rainfall readings for station: {}", stationId);
+            return await _rainfallService.GetRainfallReadingsForStationAsync(stationId, count);
         }
     }
 }

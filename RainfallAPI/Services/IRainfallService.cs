@@ -2,6 +2,6 @@ namespace RainfallAPI.Services
 {
     public interface IRainfallService
     {
-        String GetRainfallReadings(String station);
+        Task<string> GetRainfallReadingsForStationAsync(string stationId, int count);
     }
 }
