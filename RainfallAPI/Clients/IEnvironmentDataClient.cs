@@ -1,8 +1,10 @@
-﻿namespace RainfallAPI.Clients
+﻿using RainfallAPI.Models.Dto;
+
+namespace RainfallAPI.Clients
 {
     public interface IEnvironmentDataClient
     {
 
-        public Task<string?> GetRainfallReadingsForStation(string stationId, int? count);
+        public Task<List<ReadingDto>> GetRainfallReadingsForStation(string stationId, int? count);
     }
 }

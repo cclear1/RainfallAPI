@@ -1,7 +1,10 @@
+using RainfallAPI.Models;
+using RainfallAPI.Models.DTO;
+
 namespace RainfallAPI.Services
 {
     public interface IRainfallService
     {
-        Task<string> GetRainfallReadingsForStationAsync(string stationId, int count);
+        Task<RainfallReadingResponseDto> GetRainfallReadingsForStationAsync(string stationId, int count);
     }
 }

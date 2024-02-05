@@ -1,0 +1,73 @@
+  "@context" : "http://environment.data.gov.uk/flood-monitoring/meta/context.jsonld" ,
+  "meta" : {
+    "publisher" : "Environment Agency" ,
+    "licence" : "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" ,
+    "documentation" : "http://environment.data.gov.uk/flood-monitoring/doc/reference" ,
+    "version" : "0.9" ,
+    "comment" : "Status: Beta service" ,
+    "hasFormat" : [ "http://environment.data.gov.uk/flood-monitoring/id/stations/3680/readings.csv?_sorted&_limit=10", "http://environment.data.gov.uk/flood-monitoring/id/stations/3680/readings.rdf?_sorted&_limit=10", "http://environment.data.gov.uk/flood-monitoring/id/stations/3680/readings.ttl?_sorted&_limit=10", "http://environment.data.gov.uk/flood-monitoring/id/stations/3680/readings.html?_sorted&_limit=10" ] ,
+    "limit" : 10
+  }
+   ,
+  "items" : [ {
+    "@id" : "http://environment.data.gov.uk/flood-monitoring/data/readings/3680-rainfall-tipping_bucket_raingauge-t-15_min-mm/2024-02-05T19-45-00Z" ,
+    "dateTime" : "2024-02-05T19:45:00Z" ,
+    "measure" : "http://environment.data.gov.uk/flood-monitoring/id/measures/3680-rainfall-tipping_bucket_raingauge-t-15_min-mm" ,
+    "value" : 0.0
+  }
+  , {
+    "@id" : "http://environment.data.gov.uk/flood-monitoring/data/readings/3680-temperature-dry_bulb-i-15_min-deg_C/2024-02-05T19-45-00Z" ,
+    "dateTime" : "2024-02-05T19:45:00Z" ,
+    "measure" : "http://environment.data.gov.uk/flood-monitoring/id/measures/3680-temperature-dry_bulb-i-15_min-deg_C" ,
+    "value" : 11.29
+  }
+  , {
+    "@id" : "http://environment.data.gov.uk/flood-monitoring/data/readings/3680-rainfall-tipping_bucket_raingauge-t-15_min-mm/2024-02-05T19-30-00Z" ,
+    "dateTime" : "2024-02-05T19:30:00Z" ,
+    "measure" : "http://environment.data.gov.uk/flood-monitoring/id/measures/3680-rainfall-tipping_bucket_raingauge-t-15_min-mm" ,
+    "value" : 0.0
+  }
+  , {
+    "@id" : "http://environment.data.gov.uk/flood-monitoring/data/readings/3680-temperature-dry_bulb-i-15_min-deg_C/2024-02-05T19-30-00Z" ,
+    "dateTime" : "2024-02-05T19:30:00Z" ,
+    "measure" : "http://environment.data.gov.uk/flood-monitoring/id/measures/3680-temperature-dry_bulb-i-15_min-deg_C" ,
+    "value" : 11.24
+  }
+  , {
+    "@id" : "http://environment.data.gov.uk/flood-monitoring/data/readings/3680-rainfall-tipping_bucket_raingauge-t-15_min-mm/2024-02-05T19-15-00Z" ,
+    "dateTime" : "2024-02-05T19:15:00Z" ,
+    "measure" : "http://environment.data.gov.uk/flood-monitoring/id/measures/3680-rainfall-tipping_bucket_raingauge-t-15_min-mm" ,
+    "value" : 0.0
+  }
+  , {
+    "@id" : "http://environment.data.gov.uk/flood-monitoring/data/readings/3680-temperature-dry_bulb-i-15_min-deg_C/2024-02-05T19-15-00Z" ,
+    "dateTime" : "2024-02-05T19:15:00Z" ,
+    "measure" : "http://environment.data.gov.uk/flood-monitoring/id/measures/3680-temperature-dry_bulb-i-15_min-deg_C" ,
+    "value" : 11.22
+  }
+  , {
+    "@id" : "http://environment.data.gov.uk/flood-monitoring/data/readings/3680-rainfall-tipping_bucket_raingauge-t-15_min-mm/2024-02-05T19-00-00Z" ,
+    "dateTime" : "2024-02-05T19:00:00Z" ,
+    "measure" : "http://environment.data.gov.uk/flood-monitoring/id/measures/3680-rainfall-tipping_bucket_raingauge-t-15_min-mm" ,
+    "value" : 0.0
+  }
+  , {
+    "@id" : "http://environment.data.gov.uk/flood-monitoring/data/readings/3680-temperature-dry_bulb-i-15_min-deg_C/2024-02-05T19-00-00Z" ,
+    "dateTime" : "2024-02-05T19:00:00Z" ,
+    "measure" : "http://environment.data.gov.uk/flood-monitoring/id/measures/3680-temperature-dry_bulb-i-15_min-deg_C" ,
+    "value" : 11.21
+  }
+  , {
+    "@id" : "http://environment.data.gov.uk/flood-monitoring/data/readings/3680-rainfall-tipping_bucket_raingauge-t-15_min-mm/2024-02-05T18-45-00Z" ,
+    "dateTime" : "2024-02-05T18:45:00Z" ,
+    "measure" : "http://environment.data.gov.uk/flood-monitoring/id/measures/3680-rainfall-tipping_bucket_raingauge-t-15_min-mm" ,
+    "value" : 0.0
+  }
+  , {
+    "@id" : "http://environment.data.gov.uk/flood-monitoring/data/readings/3680-temperature-dry_bulb-i-15_min-deg_C/2024-02-05T18-45-00Z" ,
+    "dateTime" : "2024-02-05T18:45:00Z" ,
+    "measure" : "http://environment.data.gov.uk/flood-monitoring/id/measures/3680-temperature-dry_bulb-i-15_min-deg_C" ,
+    "value" : 11.25
+  }
+   ]
+}

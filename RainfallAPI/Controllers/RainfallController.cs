@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using RainfallAPI.Models.DTO;
 using RainfallAPI.Services;
 
 namespace RainfallAPI.Controllers
@@ -19,10 +20,14 @@ namespace RainfallAPI.Controllers
 
         [HttpGet]
         [Route("id/{stationId}/readings")]
-        public async Task<string> GetRainfallReadingsByStationId(string stationId, [FromQuery] int count)
+        public async Task<ActionResult<RainfallReadingResponseDto>> GetRainfallReadingsByStationId(string stationId, [FromQuery] int count = 10)
         {
             _logger.LogInformation("Getting rainfall readings for station: {}", stationId);
-            return await _rainfallService.GetRainfallReadingsForStationAsync(stationId, count);
+            var response = await _rainfallService.GetRainfallReadingsForStationAsync(stationId, count);
+            _logger.LogInformation(response.ToString());
+
+
+            return Ok(response); 
         }
     }
 }
