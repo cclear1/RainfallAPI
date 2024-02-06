@@ -1,4 +1,4 @@
-﻿namespace RainfallAPI.Models.Dto
+﻿namespace RainfallAPI.Models
 {
     public class ResponseDto
     {

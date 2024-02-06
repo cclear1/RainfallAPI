@@ -1,7 +1,7 @@
 using RainfallAPI.Clients;
 using RainfallAPI.Controllers;
-using RainfallAPI.Models.Dto;
-using RainfallAPI.Models.DTO;
+using RainfallAPI.Exceptions;
+using RainfallAPI.Models;
 using RainfallAPI.Transformers;
 
 namespace RainfallAPI.Services
@@ -10,37 +10,67 @@ namespace RainfallAPI.Services
     {
         private readonly ILogger _logger;   
         private readonly IEnvironmentDataClient _environmentDataClient;
-        private readonly ITransformer<ReadingDto, RainfallReadingDto> _readingTransformer;
+        private readonly ITransformer<ReadingDto, RainfallReading> _readingTransformer;
 
-        public RainfallService(ILogger<RainfallController> logger, IEnvironmentDataClient environmentDataClient, ITransformer<ReadingDto, RainfallReadingDto> readingTransformer) 
+        public RainfallService(ILogger<RainfallController> logger, IEnvironmentDataClient environmentDataClient, ITransformer<ReadingDto, RainfallReading> readingTransformer) 
         { 
             _logger = logger;
             _environmentDataClient = environmentDataClient;
             _readingTransformer = readingTransformer;
         }
 
-        public async Task<RainfallReadingResponseDto> GetRainfallReadingsForStationAsync(string stationId, int count)
+        public async Task<RainfallReadingResponse> GetRainfallReadingsForStationAsync(string stationId, int count)
         {
-            List<ReadingDto> response = await _environmentDataClient.GetRainfallReadingsForStation(stationId, count);
+            ValidateParameters(stationId, count);
+
+            var response = await _environmentDataClient.GetRainfallReadingsForStation(stationId, count);
             _logger.LogInformation("Reponse: {}", response);
+
+            // check for no response
+            if (response == null || response.Count == 0) 
+            {
+                throw new ErrorRequestException(404, new Error { message = $"No readings found for the specified stationId: {stationId}" });
+            }
+
             return ConvertToRainfallReadingResponse(response);
         }
 
-        private RainfallReadingResponseDto ConvertToRainfallReadingResponse(List<ReadingDto> readingDtos)
+        private void ValidateParameters(string stationId, int count)
         {
-            var rainfallReadings = new List<RainfallReadingDto>();
-            foreach (var reading in readingDtos)
+            List<ErrorDetail> errorDetails = new List<ErrorDetail>();
+
+            if (stationId == null)
             {
-                _logger.LogInformation($"Reading {reading.Value}");
-                rainfallReadings.Add(_readingTransformer.Transform(reading)); 
-                _logger.LogInformation($"Reading transformed {_readingTransformer.Transform(reading)}");
+                errorDetails.Add(new ErrorDetail { message = "Field cannot be null", propertyName = "stationId"});
+            }
+            if (count > 100) 
+            {
+                errorDetails.Add(new ErrorDetail { message = "Field cannot be greater than 100", propertyName = "count" });
+            }
+            if (count < 0)
+            {
+                errorDetails.Add(new ErrorDetail { message = "Field cannot be negative", propertyName = "count" });
             }
 
-            var rainfallReadingResponseDto = new RainfallReadingResponseDto
+            if (errorDetails.Count > 0)
+            {
+                throw new ErrorRequestException(400, new Error { message = "Invalid request", detail = errorDetails });
+            }
+        }
+
+        private RainfallReadingResponse ConvertToRainfallReadingResponse(List<ReadingDto> readingDtos)
+        {
+            var rainfallReadings = new List<RainfallReading>();
+            // transform received dto to required rainfall reading
+            foreach (var reading in readingDtos)
+            {
+                rainfallReadings.Add(_readingTransformer.Transform(reading)); 
+            }
+
+            var rainfallReadingResponseDto = new RainfallReadingResponse
             {
                 readings = rainfallReadings
             };
-            _logger.LogInformation($"RainfallReadingResponse: {rainfallReadingResponseDto}");
 
             return rainfallReadingResponseDto;
         }

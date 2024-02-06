@@ -1,4 +1,4 @@
-﻿namespace RainfallAPI.Models.Dto
+﻿namespace RainfallAPI.Models
 {
     using System;
     using System.Text.Json.Serialization;

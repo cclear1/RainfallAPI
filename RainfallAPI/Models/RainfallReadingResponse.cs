@@ -1,10 +1,10 @@
 ﻿using System.Runtime.Serialization;
 
-namespace RainfallAPI.Models.DTO
+namespace RainfallAPI.Models
 {
-    public class RainfallReadingResponseDto
+    public class RainfallReadingResponse
     {
-        public List<RainfallReadingDto> readings { get; set; }
+        public List<RainfallReading> readings { get; set; }
 
         public override string ToString()
         {

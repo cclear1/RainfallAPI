@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.OpenApi.Models;
 using RainfallAPI.Clients;
-using RainfallAPI.Models.Dto;
-using RainfallAPI.Models.DTO;
+using RainfallAPI.Models;
 using RainfallAPI.Services;
 using RainfallAPI.Transformers;
 
@@ -18,7 +17,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IRainfallService, RainfallService>();
 builder.Services.AddScoped<IEnvironmentDataClient, EnvironmentDataClient>();
-builder.Services.AddScoped<ITransformer<ReadingDto, RainfallReadingDto>, ReadingTransformer>();
+builder.Services.AddScoped<ITransformer<ReadingDto, RainfallReading>, ReadingTransformer>();
 
 builder.Services.AddLogging();
 builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);

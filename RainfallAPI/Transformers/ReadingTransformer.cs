@@ -1,13 +1,12 @@
-﻿using RainfallAPI.Models.Dto;
-using RainfallAPI.Models.DTO;
+﻿using RainfallAPI.Models;
 
 namespace RainfallAPI.Transformers
 {
-    public class ReadingTransformer : ITransformer<ReadingDto, RainfallReadingDto>
+    public class ReadingTransformer : ITransformer<ReadingDto, RainfallReading>
     {
-        public RainfallReadingDto Transform(ReadingDto input)
+        public RainfallReading Transform(ReadingDto input)
         {
-            RainfallReadingDto rainfallReadingDto = new RainfallReadingDto
+            RainfallReading rainfallReadingDto = new RainfallReading
             {
                 dateMeasured = input.DateTime,
                 amountMeasured = Convert.ToDecimal(input.Value)

@@ -1,13 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System.Runtime.Serialization;
 
-namespace RainfallAPI.Models.DTO
+namespace RainfallAPI.Models
 {
-    public class RainfallReadingDto
+    public class RainfallReading
     {
         public DateTime dateMeasured { get; set; }
 
-        [DataMember]
         public decimal amountMeasured { get; set; }
 
         public override string ToString()

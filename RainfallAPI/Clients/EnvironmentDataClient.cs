@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
-using RainfallAPI.Models.Dto;
+using RainfallAPI.Exceptions;
+using RainfallAPI.Models;
 
 namespace RainfallAPI.Clients
 {
@@ -20,30 +21,46 @@ namespace RainfallAPI.Clients
 
         public async Task<List<ReadingDto>> GetRainfallReadingsForStation(string stationId, int? count)
         {
-            UriBuilder uriBuilder = new UriBuilder(BASE_URL);
-            uriBuilder.Port = -1;
-            uriBuilder.Path = string.Format(RAINFALL_FOR_STATION_ENDPOINT, stationId);
-            
-            string query = "_sorted";
-            if (count.HasValue)
-            {
-                query += $"&_limit={count}"; 
-            }
-            uriBuilder.Query = query;
-
             try
             {
-                HttpResponseMessage response = await _httpClient.GetAsync(uriBuilder.Uri);
-                response.EnsureSuccessStatusCode();
-                string responseBody = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<ResponseDto>(responseBody);
-                return result.Items;
+                var response = await _httpClient.GetAsync(BuildUri(stationId, count));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseData = await response.Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<ResponseDto>(responseData);
+                    return result.Items;
+                }
+                else
+                {
+                    var errorData = await response.Content.ReadAsStringAsync();
+                    throw new ErrorRequestException((int)response.StatusCode, new Error { message = errorData });
+                }
             }
             catch (HttpRequestException ex)
             {
-                _logger.LogError("Error fetching rainfall reading for station: {}", ex.Message);
-                return new List<ReadingDto>();
+                var error = new Error { message = ex.Message };
+                throw new ErrorRequestException((int)ex.StatusCode, error);
             }
         }
+
+        private Uri BuildUri(string stationId, int? count)
+        {
+            UriBuilder uriBuilder = new UriBuilder(BASE_URL);
+            // remove default port and append endpoint path
+            uriBuilder.Port = -1;
+            uriBuilder.Path = string.Format(RAINFALL_FOR_STATION_ENDPOINT, stationId);
+
+            // add query params
+            string query = "_sorted";
+            if (count.HasValue)
+            {
+                query += $"&_limit={count}";
+            }
+            uriBuilder.Query = query;
+
+            return uriBuilder.Uri;
+        }
+
     }
 }
