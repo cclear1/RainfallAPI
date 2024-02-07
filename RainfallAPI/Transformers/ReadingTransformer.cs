@@ -8,8 +8,8 @@ namespace RainfallAPI.Transformers
         {
             RainfallReading rainfallReadingDto = new RainfallReading
             {
-                dateMeasured = input.DateTime,
-                amountMeasured = Convert.ToDecimal(input.Value)
+                DateMeasured = input.DateTime,
+                AmountMeasured = Convert.ToDecimal(input.Value)
             };
 
             return rainfallReadingDto;

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
-using RainfallAPI.Exceptions;
 using RainfallAPI.Models;
+using RainfallAPI.Exceptions;
 
 namespace RainfallAPI.Clients
 {
@@ -12,10 +12,10 @@ namespace RainfallAPI.Clients
         private const string BASE_URL = "https://environment.data.gov.uk";
         private const string RAINFALL_FOR_STATION_ENDPOINT = "/flood-monitoring/id/stations/{0}/readings";
 
-        public EnvironmentDataClient(ILogger<EnvironmentDataClient> logger)
+        public EnvironmentDataClient(ILogger<EnvironmentDataClient> logger, HttpClient httpClient)
         {
             _logger = logger;
-            _httpClient = new HttpClient();
+            _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri(BASE_URL);
         }
 
@@ -34,12 +34,12 @@ namespace RainfallAPI.Clients
                 else
                 {
                     var errorData = await response.Content.ReadAsStringAsync();
-                    throw new ErrorRequestException((int)response.StatusCode, new Error { message = errorData });
+                    throw new ErrorRequestException((int)response.StatusCode, new Error { Message = errorData });
                 }
             }
             catch (HttpRequestException ex)
             {
-                var error = new Error { message = ex.Message };
+                var error = new Error { Message = ex.Message };
                 throw new ErrorRequestException((int)ex.StatusCode, error);
             }
         }

@@ -37,7 +37,7 @@ namespace RainfallAPI.Controllers
             {
                 _logger.LogError(ex, "Error fetching data from public API");
                 // Set null status code to 500
-                int statusCode = ex.StatusCode.HasValue ? (int)ex.StatusCode : 500; 
+                int statusCode = ex.StatusCode.HasValue ? (int)ex.StatusCode : 500;
                 return StatusCode(statusCode, ex.Error);
             }
 

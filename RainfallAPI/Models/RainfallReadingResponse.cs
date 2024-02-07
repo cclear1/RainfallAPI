@@ -4,11 +4,11 @@ namespace RainfallAPI.Models
 {
     public class RainfallReadingResponse
     {
-        public List<RainfallReading> readings { get; set; }
+        public List<RainfallReading> Readings { get; set; }
 
         public override string ToString()
         {
-            return $"RainfallReadingResponse  {{Readings: {string.Join(", ", readings)}}}";
+            return $"RainfallReadingResponse  {{Readings: {string.Join(", ", Readings)}}}";
         }
     }
 }

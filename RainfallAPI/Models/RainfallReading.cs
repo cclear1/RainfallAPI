@@ -5,13 +5,13 @@ namespace RainfallAPI.Models
 {
     public class RainfallReading
     {
-        public DateTime dateMeasured { get; set; }
+        public DateTime DateMeasured { get; set; }
 
-        public decimal amountMeasured { get; set; }
+        public decimal AmountMeasured { get; set; }
 
         public override string ToString()
         {
-            return $"RainfallReading {{DateMeasured: {dateMeasured}, AmountMeasured: {amountMeasured}}}";
+            return $"RainfallReading {{DateMeasured: {DateMeasured}, AmountMeasured: {AmountMeasured}}}";
         }
     }
 }

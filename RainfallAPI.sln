@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RainfallAPI", "RainfallAPI\RainfallAPI.csproj", "{7EA37928-A710-4314-A77A-DA1245FCA49C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RainfallAPI", "RainfallAPI\RainfallAPI.csproj", "{7EA37928-A710-4314-A77A-DA1245FCA49C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RainfallAPI.UnitTests", "RainfallAPI.UnitTests\RainfallAPI.UnitTests.csproj", "{C0977C1A-E46D-46D3-A560-14DA934B48DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RainfallAPI.IntegratedTests", "RainfallAPI.IntegratedTests\RainfallAPI.IntegratedTests.csproj", "{3674649F-4AF2-431E-B24E-EA30BD83370A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{7EA37928-A710-4314-A77A-DA1245FCA49C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EA37928-A710-4314-A77A-DA1245FCA49C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EA37928-A710-4314-A77A-DA1245FCA49C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0977C1A-E46D-46D3-A560-14DA934B48DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0977C1A-E46D-46D3-A560-14DA934B48DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0977C1A-E46D-46D3-A560-14DA934B48DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0977C1A-E46D-46D3-A560-14DA934B48DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3674649F-4AF2-431E-B24E-EA30BD83370A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3674649F-4AF2-431E-B24E-EA30BD83370A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3674649F-4AF2-431E-B24E-EA30BD83370A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3674649F-4AF2-431E-B24E-EA30BD83370A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,19 +1,19 @@
-using RainfallAPI.Clients;
-using RainfallAPI.Controllers;
 using RainfallAPI.Exceptions;
+using RainfallAPI.Controllers;
 using RainfallAPI.Models;
+using RainfallAPI.Clients;
 using RainfallAPI.Transformers;
 
 namespace RainfallAPI.Services
 {
     public class RainfallService : IRainfallService
     {
-        private readonly ILogger _logger;   
+        private readonly ILogger _logger;
         private readonly IEnvironmentDataClient _environmentDataClient;
         private readonly ITransformer<ReadingDto, RainfallReading> _readingTransformer;
 
-        public RainfallService(ILogger<RainfallController> logger, IEnvironmentDataClient environmentDataClient, ITransformer<ReadingDto, RainfallReading> readingTransformer) 
-        { 
+        public RainfallService(ILogger<RainfallService> logger, IEnvironmentDataClient environmentDataClient, ITransformer<ReadingDto, RainfallReading> readingTransformer)
+        {
             _logger = logger;
             _environmentDataClient = environmentDataClient;
             _readingTransformer = readingTransformer;
@@ -27,9 +27,9 @@ namespace RainfallAPI.Services
             _logger.LogInformation("Reponse: {}", response);
 
             // check for no response
-            if (response == null || response.Count == 0) 
+            if (response == null || response.Count == 0)
             {
-                throw new ErrorRequestException(404, new Error { message = $"No readings found for the specified stationId: {stationId}" });
+                throw new ErrorRequestException(404, new Error { Message = $"No readings found for the specified stationId: {stationId}" });
             }
 
             return ConvertToRainfallReadingResponse(response);
@@ -39,22 +39,22 @@ namespace RainfallAPI.Services
         {
             List<ErrorDetail> errorDetails = new List<ErrorDetail>();
 
-            if (stationId == null)
+            if (stationId == null || stationId == "")
             {
-                errorDetails.Add(new ErrorDetail { message = "Field cannot be null", propertyName = "stationId"});
+                errorDetails.Add(new ErrorDetail { Message = "Field cannot be null", PropertyName = "stationId" });
             }
-            if (count > 100) 
+            if (count > 100)
             {
-                errorDetails.Add(new ErrorDetail { message = "Field cannot be greater than 100", propertyName = "count" });
+                errorDetails.Add(new ErrorDetail { Message = "Field cannot be greater than 100", PropertyName = "count" });
             }
             if (count < 0)
             {
-                errorDetails.Add(new ErrorDetail { message = "Field cannot be negative", propertyName = "count" });
+                errorDetails.Add(new ErrorDetail { Message = "Field cannot be negative", PropertyName = "count" });
             }
 
             if (errorDetails.Count > 0)
             {
-                throw new ErrorRequestException(400, new Error { message = "Invalid request", detail = errorDetails });
+                throw new ErrorRequestException(400, new Error { Message = "Invalid request", Detail = errorDetails });
             }
         }
 
@@ -64,12 +64,12 @@ namespace RainfallAPI.Services
             // transform received dto to required rainfall reading
             foreach (var reading in readingDtos)
             {
-                rainfallReadings.Add(_readingTransformer.Transform(reading)); 
+                rainfallReadings.Add(_readingTransformer.Transform(reading));
             }
 
             var rainfallReadingResponseDto = new RainfallReadingResponse
             {
-                readings = rainfallReadings
+                Readings = rainfallReadings
             };
 
             return rainfallReadingResponseDto;
