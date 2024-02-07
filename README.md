@@ -1,6 +1,6 @@
 # RainfallAPI
 
-The API will start up and be accessible at `https://localhost:5001` by default.
+The API will start up and be accessible at `https://localhost:3000` by default.
 
 ## Usage
 
